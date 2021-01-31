@@ -17,9 +17,11 @@ CREATE TABLE Employees (
 );
 
 CREATE TABLE Salaries (
+	id SERIAL,
 	emp_no INT,
 	salary INT,
-	FOREIGN KEY (emp_no) REFERENCES Employees(emp_no)
+	FOREIGN KEY (emp_no) REFERENCES Employees(emp_no),
+	PRIMARY KEY (id)
 );
 
 CREATE TABLE Departments (
@@ -32,14 +34,16 @@ CREATE TABLE DepartmentManager (
 	dept_no VARCHAR(30),
 	emp_no INT,
 	FOREIGN KEY (dept_no) REFERENCES Departments(dept_no),
-	FOREIGN KEY (emp_no) REFERENCES Employees(emp_no)
+	FOREIGN KEY (emp_no) REFERENCES Employees(emp_no),
+	PRIMARY KEY (dept_no, emp_no)
 );
 
 CREATE TABLE DepartmentEmployee (
 	emp_no INT,
 	dept_no VARCHAR(30),
 	FOREIGN KEY (dept_no) REFERENCES Departments(dept_no),
-	FOREIGN KEY (emp_no) REFERENCES Employees(emp_no)
+	FOREIGN KEY (emp_no) REFERENCES Employees(emp_no),
+	PRIMARY KEY (emp_no, dept_no)
 );
 
-select * from employees;
+select * from salaries;
